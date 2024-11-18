@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendVerificationEmail = (user, token) => {
-    const verificationUrl = `http://localhost:5173/verify/${token}`;
+    const verificationUrl = `https://yourshop-1ohl.onrender.com/verify/${token}`;
     
 
     const mailOptions = {
@@ -34,7 +34,7 @@ export const sendVerificationEmail = (user, token) => {
 };
 
 export const sendPasswordResetEmail = (user, token) => {
-    const resetPasswordUrl = `http://localhost:5173/Reset-Password/${token}`; 
+    const resetPasswordUrl = `https://yourshop-1ohl.onrender.com/Reset-Password/${token}`; 
    
     const mailOptions = {
         from: process.env.EMAIL_USER,
