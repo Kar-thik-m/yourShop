@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const response = await fetch("https://yourshop-backend.onrender.com/user/loaduser", {
+        const response = await fetch(`${Url}/user/loaduser`, { 
           method: 'GET',
           credentials: 'include',
         });

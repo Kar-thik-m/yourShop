@@ -36,7 +36,7 @@ export const itemPostApi = (itemdata) => async (dispatch) => {
 export const GetItemApi = () => async (dispatch) => {
     try {
         dispatch(itemgetRequest());
-        const response = await fetch(`${Url}/item/get-all-product`, {  // Use dynamic URL
+        const response = await fetch(`${Url}/item/get-all-product`, {  
             method: 'GET',
             credentials: 'include',
         });
@@ -58,7 +58,7 @@ export const GetItemApi = () => async (dispatch) => {
 export const GetItemDetails = (id) => async (dispatch) => {
     try {
         dispatch(itemDetailsRequest());
-        const response = await fetch(`${Url}/item/product/${id}`, {  // Use dynamic URL
+        const response = await fetch(`${Url}/item/product/${id}`, {  
             method: 'GET',
             credentials: 'include',
         });
@@ -124,7 +124,7 @@ export const RemoveWishlistApi = (id) => async (dispatch) => {
 export const GetWishlist = () => async (dispatch) => {
     try {
         dispatch(getWishlistRequest());
-        const response = await fetch(`${Url}/whishlist/getwishlist`, {  // Use dynamic URL
+        const response = await fetch(`${Url}/whishlist/getwishlist`, {  
             method: 'GET',
             credentials: 'include',
         });
