@@ -20,6 +20,8 @@ app.use(cookieParser());
 
 // Enable CORS
 app.use(cors({
+  origin: 'https://yourshop-1ohl.onrender.com/',  
+  
   credentials: true,  
 }));
 
