@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { Url } from '../../config'; // Import URL from config
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -6,13 +8,10 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
-
-
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const response = await fetch('http://localhost:5000/user/loaduser', {
+        const response = await fetch(`${Url}/user/loaduser`, { // Use dynamic URL from config
           method: 'GET',
           credentials: 'include',
         });
@@ -21,7 +20,6 @@ export const AuthProvider = ({ children }) => {
           const data = await response.json();
           setUser(data);
         } else {
-
           throw new Error(`Failed to load user: ${response.statusText}`);
         }
       } catch (error) {
@@ -38,7 +36,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await fetch('http://localhost:5000/user/register', {
+      const response = await fetch(`${Url}/user/register`, { // Use dynamic URL from config
         method: 'POST',
         body: userData,
         credentials: 'include',
@@ -58,7 +56,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     try {
-      const response = await fetch('http://localhost:5000/user/login', {
+      const response = await fetch(`${Url}/user/login`, { // Use dynamic URL from config
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials),
@@ -68,8 +66,6 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
-
-
       } else {
         throw new Error('Login failed');
       }
@@ -80,7 +76,7 @@ export const AuthProvider = ({ children }) => {
 
   const EmailVerified = async (token) => {
     try {
-      const response = await fetch(`http://localhost:5000/user/verify/${token}`, {
+      const response = await fetch(`${Url}/user/verify/${token}`, { // Use dynamic URL from config
         method: 'GET',
         credentials: 'include',
       });
@@ -88,23 +84,19 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
-
-
       } else {
-        throw new Error('Login failed');
+        throw new Error('Email verification failed');
       }
     } catch (error) {
-      setError(error.message || 'Failed to login');
+      setError(error.message || 'Failed to verify email');
     }
   };
+
   const SendPassToken = async (email) => {
     try {
-
-      const response = await fetch(`http://localhost:5000/user/forgotpassword`, {
+      const response = await fetch(`${Url}/user/forgotpassword`, { // Use dynamic URL from config
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
         credentials: 'include',
       });
@@ -112,23 +104,19 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
-
-
       } else {
-        throw new Error('Login failed');
+        throw new Error('Password reset token request failed');
       }
     } catch (error) {
-      setError(error.message || 'Failed to login');
+      setError(error.message || 'Failed to send password reset token');
     }
-  }
+  };
+
   const ResetPassWord = async (newPassword, token) => {
     try {
-
-      const response = await fetch(`http://localhost:5000/user/resetpassword/${token}`, {
+      const response = await fetch(`${Url}/user/resetpassword/${token}`, { // Use dynamic URL from config
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ newPassword }),
         credentials: 'include',
       });
@@ -136,19 +124,17 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
-
-
       } else {
-        throw new Error('Login failed');
+        throw new Error('Password reset failed');
       }
     } catch (error) {
-      setError(error.message || 'Failed to login');
+      setError(error.message || 'Failed to reset password');
     }
-  }
-  const logout = async () => {
+  };
 
+  const logout = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/user/logoutuser`, {
+      const response = await fetch(`${Url}/user/logoutuser`, { // Use dynamic URL from config
         method: 'GET',
         credentials: 'include',
       });
@@ -156,20 +142,16 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         await response.json();
         setUser(null);
-
-
       } else {
         throw new Error('Logout failed');
       }
     } catch (error) {
       setError(error.message || 'Failed to logout');
     }
-
-
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, error, register, login, logout, EmailVerified, SendPassToken,ResetPassWord }}>
+    <AuthContext.Provider value={{ user, loading, error, register, login, logout, EmailVerified, SendPassToken, ResetPassWord }}>
       {children}
     </AuthContext.Provider>
   );

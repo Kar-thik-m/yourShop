@@ -2,12 +2,12 @@ import {
     addToPostRequest, addToFailure, addTopostSuccess,
     getCartFailure, getCartSuccess, removeItemFromCart, removeItemFromCartFailure
 } from "../Slice/AddToCartSlice";
-
+import { Url } from "../../../config";
 export const AddToCartPostApi = (productId, quantity) => async (dispatch) => {
     try {
         dispatch(addToPostRequest());
 
-        const response = await fetch('http://localhost:5000/cart/addToCart', {
+        const response = await fetch(`${Url}/cart/addToCart`, {
             method: 'POST',
             body: JSON.stringify({ productId, quantity }),
             headers: { 'Content-Type': 'application/json' },
@@ -29,7 +29,7 @@ export const AddToCartPostApi = (productId, quantity) => async (dispatch) => {
 
 export const GetAddToCartApi = () => async (dispatch) => {
     try {
-        const response = await fetch('http://localhost:5000/cart/getaddCart', {
+        const response = await fetch(`${Url}/cart/getaddCart`, {
             method: 'GET',
             credentials: 'include',
         });
@@ -49,7 +49,7 @@ export const GetAddToCartApi = () => async (dispatch) => {
 
 export const handleRemoveFromCart = (productId) => async (dispatch) => {
     try {
-        const response = await fetch(`http://localhost:5000/cart/removeFromCart`, {
+        const response = await fetch(`${Url}/cart/removeFromCart`, {
             method: "DELETE",
             body: JSON.stringify({ productId }),
             headers: { 'Content-Type': 'application/json' },

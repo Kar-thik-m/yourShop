@@ -13,17 +13,19 @@ import {
     deleteOrderFailure,
 } from "../Slice/orderSlice.js";
 
+import { Url } from "../../../config.js";  // Importing dynamic URL
 
+// Create Order
 export const createOrder = (products, shippingAddress, paymentInfo) => async (dispatch) => {
     dispatch(createOrderRequest());
 
     try {
-        const response = await fetch('http://localhost:5000/order/createorder', {
+        const response = await fetch(`${Url}/order/createorder`, {  // Using dynamic URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({products, shippingAddress, paymentInfo}),
+            body: JSON.stringify({ products, shippingAddress, paymentInfo }),
             credentials: 'include',
         });
 
@@ -40,12 +42,12 @@ export const createOrder = (products, shippingAddress, paymentInfo) => async (di
     }
 };
 
-// Get user orders (GET /api/orders/userorders)
+// Get user orders
 export const getUserOrders = () => async (dispatch) => {
     dispatch(getOrdersRequest());
 
     try {
-        const response = await fetch('http://localhost:5000/order/userorders', {
+        const response = await fetch(`${Url}/order/userorders`, {  // Using dynamic URL
             method: 'GET',
             credentials: 'include',
         });
@@ -63,12 +65,12 @@ export const getUserOrders = () => async (dispatch) => {
     }
 };
 
-// Update order status (PUT /api/orders/update/:orderId)
+// Update order status
 export const updateOrderStatus = (orderId, status) => async (dispatch) => {
     dispatch(updateOrderStatusRequest());
 
     try {
-        const response = await fetch(`http://localhost:5000/order/update/${orderId}`, {
+        const response = await fetch(`${Url}/order/update/${orderId}`, {  // Using dynamic URL
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -90,12 +92,12 @@ export const updateOrderStatus = (orderId, status) => async (dispatch) => {
     }
 };
 
-// Delete order (DELETE /api/orders/delete/:orderId)
+// Delete order
 export const deleteOrder = (orderId) => async (dispatch) => {
     dispatch(deleteOrderRequest());
 
     try {
-        const response = await fetch(`http://localhost:5000/order/delete/${orderId}`, {
+        const response = await fetch(`${Url}/order/delete/${orderId}`, {  // Using dynamic URL
             method: 'DELETE',
             credentials: 'include',
         });
