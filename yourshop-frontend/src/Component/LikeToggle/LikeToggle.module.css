@@ -1,0 +1,153 @@
+.LikeToggleContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #3f3232;
+  height: 100vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #cacaca;
+  flex-direction: column;
+  z-index: 10;
+
+
+}
+
+.CloseButton {
+  
+  background-color: red;
+}
+
+.LikeToggleContainer>div:first-child {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+  color: #007bff;
+  text-align: right;
+  font-weight: 600;
+}
+
+/* Card container */
+.card {
+  display: flex;
+  flex-direction: column;
+
+  background-color: #f9f9f9;
+
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+/* Hover effect on the card */
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Image container */
+.cardImageContainer {
+  height: 180px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Product name */
+.productName {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+/* Price styling */
+.cardPrice {
+  font-size: 18px;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+/* Ratings section */
+.cardRating {
+  font-size: 14px;
+  color: #f39c12;
+  display: flex;
+  align-items: center;
+}
+
+.starIcon {
+  margin-right: 5px;
+}
+
+/* Stock availability */
+.cardStock {
+  font-size: 14px;
+  color: #27ae60;
+  font-weight: 600;
+}
+
+/* Icon container for shopping cart icon */
+.icons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 22px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.icons:hover {
+  color: #0056b3;
+}
+
+/* Message when the wishlist is empty */
+.NoProductsMessage {
+  text-align: center;
+  font-size: 16px;
+  color: #888;
+  padding: 20px;
+}
+
+/* Styling for the close button */
+.LikeToggleContainer>div:first-child {
+  font-size: 18px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Making the like toggle container responsive */
+@media (max-width: 768px) {
+  .LikeToggleContainer {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .cardImageContainer {
+    height: 150px;
+  }
+
+  .cardPrice {
+    font-size: 16px;
+  }
+
+  .productName {
+    font-size: 14px;
+  }
+}

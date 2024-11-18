@@ -1,0 +1,108 @@
+.bannerContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ 
+
+    background-color: #f5f5f5;
+}
+
+.bannerContent {
+    flex: 1;
+    text-align: left;
+    padding: 30px;
+    max-width: 50%;
+    z-index: 2;
+}
+
+.bannerTitle {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #ff6200;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    animation: fadeInUp 2s ease-out;
+}
+
+.bannerSubtitle {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    color: #333;
+    line-height: 1.5;
+    animation: fadeInUp 2s ease-out 0.5s;
+}
+
+.shopNowButton {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #ff6200;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    animation: fadeInUp 2s ease-out 1s;
+}
+
+.shopNowButton:hover {
+    background-color: #e85d00;
+}
+
+.imageContainer {
+    position: relative;
+
+    overflow: auto;
+    box-shadow: 10px 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.bannerImage {
+    width: 99%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+
+}
+
+
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .bannerContainer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .bannerContent {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .bannerTitle {
+        font-size: 2.5rem;
+    }
+
+    .bannerSubtitle {
+        font-size: 1.2rem;
+    }
+
+    .shopNowButton {
+        font-size: 1rem;
+    }
+
+    .imageContainer {
+        margin-top: 20px;
+        max-width: 100%;
+    }
+}
