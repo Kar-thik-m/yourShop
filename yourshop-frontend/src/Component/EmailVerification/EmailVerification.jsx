@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '../../ContextApi/AuthContextApi';
 import { useNavigate, useParams } from 'react-router-dom';
-import EVStyle from '../EmailVerification/Emailverification.module.css';
+import EVStyle from '../EmailVerification/EmailVerification.module.css';
 
 const Verify = () => {
     const { EmailVerified, error } = useAuth();
