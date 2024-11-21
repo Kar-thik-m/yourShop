@@ -7,7 +7,7 @@ import cloudinary from "cloudinary"
 import { Authentication } from '../Middleware/Authentication.js';
 import isValidEmail from '../Utils/isEmailvalid.js';
 import sendToken from "../Utils/SendToken.js";
-import { sendVerificationEmail,sendPasswordResetEmail } from '../Utils/Nodemailer.js';
+import { sendVerificationEmail, sendPasswordResetEmail } from '../Utils/Nodemailer.js';
 import crypto from "crypto";
 const userRouter = express.Router();
 

@@ -26,8 +26,8 @@ export const AuthProvider = ({ children }) => {
             throw new Error(`Failed to load user: ${response.statusText}`);
           }
         } catch (error) {
-          console.error('Error loading user:', error);
-          setError(error.message || 'Failed to load user');
+          console.error(error);
+          setError(error.message);
         }
         setLoading(false); // Set loading to false after request
       }
