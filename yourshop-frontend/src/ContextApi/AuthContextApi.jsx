@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
       if (user === null) {
         setLoading(true); // Ensure loading is true before making request
         try {
-          const response = await fetch(`https://yourshop-backend.onrender.com/user/loaduser`, {
+          const response = await fetch(`${Url}/user/loaduser`, {
             method: 'GET',
             credentials: 'include',
           });
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
   // Registration handler
   const register = async (userData) => {
     try {
-      const response = await fetch(`https://yourshop-backend.onrender.com/user/register`, {
+      const response = await fetch(`${Url}/user/register`, {
         method: 'POST',
         body: userData,
         credentials: 'include',
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
   // Login handler
   const login = async (credentials) => {
     try {
-      const response = await fetch(`https://yourshop-backend.onrender.com/user/login`, {
+      const response = await fetch(`${Url}/user/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials),
@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }) => {
   // Email verification handler
   const EmailVerified = async (token) => {
     try {
-      const response = await fetch(`https://yourshop-backend.onrender.com/verify/${token}`, {
+      const response = await fetch(`${Url}/verify/${token}`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -100,7 +100,7 @@ export const AuthProvider = ({ children }) => {
   // Password reset token handler
   const SendPassToken = async (email) => {
     try {
-      const response = await fetch(`https://yourshop-backend.onrender.com/user/forgotpassword`, {
+      const response = await fetch(`${Url}/user/forgotpassword`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -121,7 +121,7 @@ export const AuthProvider = ({ children }) => {
   // Password reset handler
   const ResetPassWord = async (newPassword, token) => {
     try {
-      const response = await fetch(`https://yourshop-backend.onrender.com/user/resetpassword/${token}`, {
+      const response = await fetch(`${Url}/user/resetpassword/${token}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ newPassword }),
@@ -142,7 +142,7 @@ export const AuthProvider = ({ children }) => {
   // Logout handler
   const logout = async () => {
     try {
-      const response = await fetch(`https://yourshop-backend.onrender.com/user/logoutuser`, {
+      const response = await fetch(`${Url}/user/logoutuser`, {
         method: 'GET',
         credentials: 'include',
       });
