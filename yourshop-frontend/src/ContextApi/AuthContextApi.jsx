@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Url } from '../../config'; // Import URL from config
+import { Url } from '../../config'; // Make sure your config file is correct
 
 const AuthContext = createContext();
 
@@ -8,35 +8,38 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Effect to load the user when the component mounts or user state changes
   useEffect(() => {
     const loadUser = async () => {
-      try {
-        const response = await fetch(`${Url}/user/loaduser`, { 
-          method: 'GET',
-          credentials: 'include',
-        });
+      if (user === null) {
+        setLoading(true); // Ensure loading is true before making request
+        try {
+          const response = await fetch(`https://yourshop-backend.onrender.com/user/loaduser`, {
+            method: 'GET',
+            credentials: 'include',
+          });
 
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data);
-        } else {
-          throw new Error(`Failed to load user: ${response.statusText}`);
+          if (response.ok) {
+            const data = await response.json();
+            setUser(data); // Set user state if response is successful
+          } else {
+            throw new Error(`Failed to load user: ${response.statusText}`);
+          }
+        } catch (error) {
+          console.error('Error loading user:', error);
+          setError(error.message || 'Failed to load user');
         }
-      } catch (error) {
-        console.error('Error loading user:', error);
-        setError(error.message || 'Failed to load user');
+        setLoading(false); // Set loading to false after request
       }
-
-      setLoading(false);
     };
 
     loadUser();
-  }, []);
+  }, [user]); // Trigger this effect when `user` state changes
 
-
+  // Registration handler
   const register = async (userData) => {
     try {
-      const response = await fetch(`${Url}/user/register`, { // Use dynamic URL from config
+      const response = await fetch(`https://yourshop-backend.onrender.com/user/register`, {
         method: 'POST',
         body: userData,
         credentials: 'include',
@@ -53,10 +56,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-
+  // Login handler
   const login = async (credentials) => {
     try {
-      const response = await fetch(`${Url}/user/login`, { // Use dynamic URL from config
+      const response = await fetch(`https://yourshop-backend.onrender.com/user/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials),
@@ -65,7 +68,8 @@ export const AuthProvider = ({ children }) => {
 
       if (response.ok) {
         const data = await response.json();
-        setUser(data.user);
+        console.log('Login successful:', data); // Debug log to verify
+        setUser(data.user); // Set user state after successful login
       } else {
         throw new Error('Login failed');
       }
@@ -74,9 +78,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Email verification handler
   const EmailVerified = async (token) => {
     try {
-      const response = await fetch(`${Url}/user/verify/${token}`, { // Use dynamic URL from config
+      const response = await fetch(`https://yourshop-backend.onrender.com/verify/${token}`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -92,9 +97,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Password reset token handler
   const SendPassToken = async (email) => {
     try {
-      const response = await fetch(`${Url}/user/forgotpassword`, { // Use dynamic URL from config
+      const response = await fetch(`https://yourshop-backend.onrender.com/user/forgotpassword`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -103,7 +109,7 @@ export const AuthProvider = ({ children }) => {
 
       if (response.ok) {
         const data = await response.json();
-        setUser(data.user);
+        console.log('Password reset token sent:', data); // Debug log
       } else {
         throw new Error('Password reset token request failed');
       }
@@ -112,9 +118,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Password reset handler
   const ResetPassWord = async (newPassword, token) => {
     try {
-      const response = await fetch(`${Url}/user/resetpassword/${token}`, { // Use dynamic URL from config
+      const response = await fetch(`https://yourshop-backend.onrender.com/user/resetpassword/${token}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ newPassword }),
@@ -132,16 +139,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Logout handler
   const logout = async () => {
     try {
-      const response = await fetch(`${Url}/user/logoutuser`, { // Use dynamic URL from config
+      const response = await fetch(`https://yourshop-backend.onrender.com/user/logoutuser`, {
         method: 'GET',
         credentials: 'include',
       });
 
       if (response.ok) {
         await response.json();
-        setUser(null);
+        setUser(null); // Set user state to null after logout
       } else {
         throw new Error('Logout failed');
       }
@@ -152,9 +160,10 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, loading, error, register, login, logout, EmailVerified, SendPassToken, ResetPassWord }}>
-      {children}
+      {loading ? <div>Loading...</div> : children}
     </AuthContext.Provider>
   );
 };
 
+// Custom hook to access auth context
 export const useAuth = () => useContext(AuthContext);
