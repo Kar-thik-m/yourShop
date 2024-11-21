@@ -7,6 +7,7 @@ const sendToken = (user, statusCode, res) => {
         expires: new Date(
             Date.now() + cookieExpiryTime),
         httpOnly: true,
+        sameSite: 'None',
     }
 
     res.status(statusCode)
