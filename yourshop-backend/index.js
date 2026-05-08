@@ -17,14 +17,17 @@ const app = express();
 connectToDb();
 
 // =======================
-// CORS CONFIG (IMPORTANT - MUST BE FIRST)
+// CORS CONFIG (FIXED FOR PRODUCTION)
 // =======================
 app.use(cors({
-  origin: 'https://yourshop01.netlify.app', // 🔴 your frontend URL
+  origin: 'https://yourshop01.netlify.app',
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// 👇 IMPORTANT: Handle preflight requests
+app.options('*', cors());
 
 // =======================
 // MIDDLEWARES
@@ -54,11 +57,11 @@ app.use('/order', Oderrouter);
 // TEST ROUTE
 // =======================
 app.get('/', (req, res) => {
-  res.send('Backend is running');
+  res.send('Backend is running successfully');
 });
 
 // =======================
-// START SERVER
+// SERVER START
 // =======================
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
