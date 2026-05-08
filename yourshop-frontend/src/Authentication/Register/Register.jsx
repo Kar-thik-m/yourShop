@@ -48,13 +48,13 @@ const Register = () => {
         <div className="flex min-h-screen bg-white">
             {/* Left Side: Image & Branding (Hidden on mobile) */}
             <div className="hidden lg:flex lg:w-1/2 relative bg-indigo-900 overflow-hidden">
-                <img 
-                    src={AuthBg} 
-                    className="absolute inset-0 w-full h-full object-cover opacity-60" 
-                    alt="Background" 
+                <img
+                    src={AuthBg}
+                    className="absolute inset-0 w-full h-full object-cover opacity-60"
+                    alt="Background"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-indigo-950 via-transparent to-transparent"></div>
-                
+
                 <div className="relative z-10 flex flex-col justify-end p-16 text-white w-full">
                     <div className="mb-8">
                         <img src={logo} className="w-20 h-auto rounded-xl shadow-2xl mb-6" alt="Logo" />
@@ -89,54 +89,54 @@ const Register = () => {
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <div className="space-y-2">
                             <label className="text-sm font-bold text-indigo-900 tracking-wide uppercase ml-1">Username</label>
-                            <input 
-                                type="text" 
-                                name="username" 
-                                placeholder="johndoe" 
-                                onChange={handleChange} 
-                                required 
+                            <input
+                                type="text"
+                                name="username"
+                                placeholder="johndoe"
+                                onChange={handleChange}
+                                required
                                 className="w-full px-6 py-3.5 bg-white border-2 border-gray-100 rounded-2xl focus:border-indigo-600 focus:ring-4 focus:ring-indigo-100 outline-none transition-all duration-300 shadow-sm font-medium placeholder:text-gray-300"
                             />
                         </div>
 
                         <div className="space-y-2">
                             <label className="text-sm font-bold text-indigo-900 tracking-wide uppercase ml-1">Email Address</label>
-                            <input 
-                                type="email" 
-                                name="email" 
-                                placeholder="name@example.com" 
-                                onChange={handleChange} 
-                                required 
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="name@example.com"
+                                onChange={handleChange}
+                                required
                                 className="w-full px-6 py-3.5 bg-white border-2 border-gray-100 rounded-2xl focus:border-indigo-600 focus:ring-4 focus:ring-indigo-100 outline-none transition-all duration-300 shadow-sm font-medium placeholder:text-gray-300"
                             />
                         </div>
 
                         <div className="space-y-2">
                             <label className="text-sm font-bold text-indigo-900 tracking-wide uppercase ml-1">Password</label>
-                            <input 
-                                type="password" 
-                                name="password" 
-                                placeholder="••••••••" 
-                                onChange={handleChange} 
-                                required 
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="••••••••"
+                                onChange={handleChange}
+                                required
                                 className="w-full px-6 py-3.5 bg-white border-2 border-gray-100 rounded-2xl focus:border-indigo-600 focus:ring-4 focus:ring-indigo-100 outline-none transition-all duration-300 shadow-sm font-medium placeholder:text-gray-300"
                             />
                         </div>
 
                         <div className="space-y-2">
                             <label className="text-sm font-bold text-indigo-900 tracking-wide uppercase ml-1">Profile Picture</label>
-                            <input 
-                                type="file" 
-                                name="image" 
-                                accept="image/*" 
-                                onChange={handleChange} 
+                            <input
+                                type="file"
+                                name="image"
+                                accept="image/*"
+                                onChange={handleChange}
                                 className="w-full px-6 py-2.5 bg-white border-2 border-gray-100 rounded-2xl file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-black file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer transition-all duration-300 text-sm text-gray-400 font-medium"
                             />
                         </div>
-                        
+
                         <div className="pt-4">
-                            <button 
-                                type="submit" 
+                            <button
+                                type="submit"
                                 className="group relative w-full py-4 bg-indigo-950 hover:bg-black text-white font-black text-lg rounded-2xl shadow-2xl shadow-indigo-200 transition-all duration-300 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center overflow-hidden"
                                 disabled={loading}
                             >
@@ -147,7 +147,7 @@ const Register = () => {
 
                         <div className="flex items-center justify-center pt-4">
                             <p className="text-gray-500 font-bold">
-                                Already a member? 
+                                Already a member?
                                 <Link to="/login" className="ml-2 text-indigo-600 hover:text-orange-600 font-black underline decoration-2 underline-offset-4 transition-all">
                                     Sign In Instead
                                 </Link>
@@ -169,4 +169,4 @@ const Register = () => {
 
 export default Register;
 
-
+
