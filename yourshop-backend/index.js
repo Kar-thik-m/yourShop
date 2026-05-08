@@ -20,7 +20,7 @@ connectToDb();
 // CORS CONFIG (FIXED FOR PRODUCTION)
 // =======================
 app.use(cors({
-  origin: 'https://yourshop01.netlify.app',
+  origin: ['https://yourshop01.netlify.app', 'http://localhost:5173'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
