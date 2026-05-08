@@ -14,7 +14,7 @@ const app = express();
 // Connect to the database
 connectToDb();
 
-// Middleware setup
+
 app.use(express.json());
 app.use(cookieParser());
 
